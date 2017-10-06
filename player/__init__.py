@@ -3,8 +3,8 @@
 
 
 class Player(object):
-    def __init__(self):
-        self.hero = None
+    def __init__(self, hero):
+        self.hero = hero
         self.hand_cards = []  # 手牌
         self.deck_cards = []  # 牌库
         self.dead_cards = []  # 坟场

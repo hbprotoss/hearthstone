@@ -2,6 +2,7 @@
 # coding=utf-8
 
 from constant.race import Race
+from constant import MAX_HEALTH
 
 
 class Card(object):
@@ -19,19 +20,19 @@ class Card(object):
         self.power = False  # 英雄技能
 
         self.effect = False  # 卡牌效果
-        self.battleCry = False  # 战吼
+        self.battle_cry = False  # 战吼
         self.charge = False  # 冲锋
         self.stealth = False  # 潜行
         self.combo = False  # 连击
-        self.deathRattle = False  # 亡语
-        self.divineShield = False  # 圣盾
+        self.death_rattle = False  # 亡语
+        self.divine_shield = False  # 圣盾
         self.overload = False  # 过载
         self.secret = False  # 奥秘
         self.taunt = False  # 嘲讽
-        self.windFury = False  # 风怒
+        self.wind_fury = False  # 风怒
         self.enrage = False  # 激怒
-        self.spellDamage = False  # 法伤
-        self.chooseOne = False  # 抉择
+        self.spell_damage = False  # 法伤
+        self.choose_one = False  # 抉择
         self.poisonous = False  # 剧毒
 
     def pre_turn(self):
@@ -78,7 +79,7 @@ class Card(object):
     def post_dead(self):
         """
         死亡后处理
-        亡语
+        亡语, 各种效果消除处理
         :return:
         """
         pass
@@ -107,3 +108,6 @@ class Power(Card):
     def __init__(self):
         Card.__init__(self)
         self.power = True
+        self.health = MAX_HEALTH
+        self.cur_health = MAX_HEALTH
+
