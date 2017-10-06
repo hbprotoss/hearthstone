@@ -8,7 +8,7 @@ class Hero(object):
         self.heath = 0
         self.armor = 0
 
-        self.max_mana = 0
+        self.mana = 0
         self.cur_mana = 0
         self.locked_mana = 0
 

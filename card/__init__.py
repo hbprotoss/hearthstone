@@ -6,8 +6,12 @@ from constant.race import Race
 
 class Card(object):
     def __init__(self):
-        self.attack = 0  # 攻击力
-        self.health = 0  # 生命值
+        self.attack = 0  # 初始攻击力
+        self.cur_attack = 0  # 当前攻击力
+        self.health = 0  # 初始生命值
+        self.cur_health = 0  # 当前生命值
+        self.cost = 0  # 初始费用
+        self.cur_cost = 0  # 当前费用
 
         self.minion = False  # 随从
         self.spell = False  # 法术
