@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # coding=utf-8
 
-from hero import Hero
 from card.armor_up import ArmorUp
+from hero import Hero
 
 
 class Garrosh(Hero):

@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # coding=utf-8
 
-from player import Player
-from hero.jaina import Jaina
 from hero.garrosh import Garrosh
+from hero.jaina import Jaina
+from player import Player
 
 _engine = None
 
