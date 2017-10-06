@@ -5,8 +5,8 @@
 class Player(object):
     def __init__(self, hero):
         self.hero = hero
-        self.mana = 0
-        self.cur_mana = 0
+        self.mana = 1
+        self.cur_mana = 1
         self.locked_mana = 0
 
         self.hand_cards = []  # 手牌

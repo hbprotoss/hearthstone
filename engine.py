@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 # coding=utf-8
 
+from player import Player
+from hero.jaina import Jaina
+from hero.garrosh import Garrosh
+
 _engine = None
 
 
@@ -20,7 +24,14 @@ class Engine(object):
         _engine = self
 
     def start(self):
+        self._init_players()
         pass
+
+    def _init_players(self):
+        player0 = Player(Jaina())
+        player1 = Player(Garrosh())
+        self.players.append(player0)
+        self.players.append(player1)
 
     def cur_player(self):
         return self.players[self.cur_play_idx]
