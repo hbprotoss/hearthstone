@@ -100,6 +100,12 @@ class Spell(Card):
         self.target_count = 0  # 目标数量
 
 
+class Power(Spell):
+    def __init__(self):
+        Spell.__init__(self)
+        self.power = True
+
+
 class Weapon(Card):
     def __init__(self):
         Card.__init__(self)
