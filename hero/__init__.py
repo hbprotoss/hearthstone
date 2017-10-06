@@ -8,10 +8,6 @@ class Hero(object):
         self.heath = 0
         self.armor = 0
 
-        self.mana = 0
-        self.cur_mana = 0
-        self.locked_mana = 0
-
         self.immune = False  # 无敌状态
 
         self.weapon = None  # 武器

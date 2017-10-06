@@ -2,7 +2,6 @@
 # coding=utf-8
 
 from constant.race import Race
-from constant import MAX_HEALTH
 
 
 class Card(object):
@@ -21,6 +20,7 @@ class Card(object):
 
         self.effect = False  # 卡牌效果
         self.battle_cry = False  # 战吼
+        self.battle_cry_target_count = 0  # 战吼目标数量
         self.charge = False  # 冲锋
         self.stealth = False  # 潜行
         self.combo = False  # 连击
@@ -32,10 +32,12 @@ class Card(object):
         self.wind_fury = False  # 风怒
         self.enrage = False  # 激怒
         self.spell_damage = False  # 法伤
+        self.spell_immune = False  # 魔免
         self.choose_one = False  # 抉择
         self.poisonous = False  # 剧毒
+        self.frozen = False  # 冻结
 
-    def pre_turn(self):
+    def pre_turn(self, target_cards):
         """
         回合开始前处理
         效果
@@ -43,7 +45,7 @@ class Card(object):
         """
         pass
 
-    def post_turn(self):
+    def post_turn(self, target_cards):
         """
         回合结束后处理
         效果
@@ -51,15 +53,14 @@ class Card(object):
         """
         pass
 
-    def pre_play(self):
+    def pre_play(self, target_cards):
         """
         出牌前处理
-        战吼
         :return:
         """
         pass
 
-    def post_play(self):
+    def post_play(self, target_cards):
         """
         出牌后处理
         战吼，冲锋，连击，圣盾，过载，奥秘，沉默，潜行，嘲讽，风怒，抉择
@@ -68,7 +69,7 @@ class Card(object):
         """
         pass
 
-    def pre_dead(self):
+    def pre_dead(self, target_cards):
         """
         死亡前处理
         可能有各种特效，一时忘了
@@ -76,7 +77,7 @@ class Card(object):
         """
         pass
 
-    def post_dead(self):
+    def post_dead(self, target_cards):
         """
         死亡后处理
         亡语, 各种效果消除处理
@@ -96,18 +97,10 @@ class Spell(Card):
     def __init__(self):
         Card.__init__(self)
         self.spell = True
+        self.target_count = 0  # 目标数量
 
 
 class Weapon(Card):
     def __init__(self):
         Card.__init__(self)
         self.weapon = True
-
-
-class Power(Card):
-    def __init__(self):
-        Card.__init__(self)
-        self.power = True
-        self.health = MAX_HEALTH
-        self.cur_health = MAX_HEALTH
-

@@ -5,6 +5,10 @@
 class Player(object):
     def __init__(self, hero):
         self.hero = hero
+        self.mana = 0
+        self.cur_mana = 0
+        self.locked_mana = 0
+
         self.hand_cards = []  # 手牌
         self.deck_cards = []  # 牌库
         self.dead_cards = []  # 坟场
