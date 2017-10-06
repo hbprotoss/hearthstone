@@ -2,15 +2,14 @@
 # coding=utf-8
 
 from card import Power
-from engine import Engine
 
 
 class ArmorUp(Power):
     def __init__(self):
         Power.__init__(self)
+        self.name = '全副武装'
 
-    def post_play(self, target_cards):
-        engine = Engine.get_instance()
+    def post_play(self, engine, target_cards):
         player = engine.cur_player()
         hero = player.hero
         hero.armor = hero.armor + 2

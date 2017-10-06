@@ -3,7 +3,6 @@
 
 # misc
 misc/
-*test*
 *.log
 
 # C extensions

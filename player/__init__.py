@@ -3,14 +3,15 @@
 
 
 class Player(object):
-    def __init__(self, hero):
+    def __init__(self, hero, deck_cards):
         self.hero = hero
         self.mana = 1
         self.cur_mana = 1
         self.locked_mana = 0
 
         self.hand_cards = []  # 手牌
-        self.deck_cards = []  # 牌库
+        self.deck_cards = deck_cards  # 牌库
+        self.table_cards = []  # 桌面上的牌
         self.dead_cards = []  # 坟场
 
     def draw_card_from_deck(self, from_top=True):
@@ -48,7 +49,9 @@ class Player(object):
         :param from_top:
         :return: Card
         """
-        return None
+        if len(self.deck_cards) == 0:
+            return None
+        return self.deck_cards.pop(0)
 
     def play_card(self):
         """

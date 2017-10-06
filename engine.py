@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # coding=utf-8
 
+from card.coin import Coin
+from card.test import Test
 from hero.garrosh import Garrosh
 from hero.jaina import Jaina
 from player import Player
@@ -25,13 +27,21 @@ class Engine(object):
 
     def start(self):
         self._init_players()
-        pass
 
     def _init_players(self):
-        player0 = Player(Jaina())
-        player1 = Player(Garrosh())
+        # 先手
+        player0 = Player(Jaina(), self._generate_jaina_cards())
         self.players.append(player0)
+        # 后手
+        player1 = Player(Garrosh(), self._generate_garrosh_cards())
+        player1.add_hand_card(Coin())
         self.players.append(player1)
+
+    def _generate_jaina_cards(self):
+        return [Test()]
+
+    def _generate_garrosh_cards(self):
+        return [Test()]
 
     def cur_player(self):
         return self.players[self.cur_play_idx]
