@@ -7,7 +7,7 @@ from card import Power
 class ArmorUp(Power):
     def __init__(self):
         Power.__init__(self)
-        self.name = '全副武装'
+        self.name = 'Armor Up'
 
     def post_play(self, engine, target_cards):
         player = engine.cur_player()

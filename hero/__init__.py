@@ -4,6 +4,8 @@
 
 class Hero(object):
     def __init__(self):
+        self.name = ''
+
         self.attack = 0
         self.heath = 0
         self.armor = 0

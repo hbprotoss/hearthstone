@@ -14,6 +14,9 @@ class Player(object):
         self.table_cards = []  # 桌面上的牌
         self.dead_cards = []  # 坟场
 
+    def choose_action(self):
+        raise NotImplementedError
+
     def draw_card_from_deck(self, from_top=True):
         """
         抓牌
@@ -28,6 +31,7 @@ class Player(object):
         :param card:
         :return:
         """
+        self.hand_cards.append(card)
 
     def remove_hand_card(self, card):
         """
@@ -35,6 +39,7 @@ class Player(object):
         :param card:
         :return: Card
         """
+        self.hand_cards.remove(card)
 
     def add_deck_card(self, card):
         """
@@ -42,6 +47,7 @@ class Player(object):
         :param card:
         :return:
         """
+        raise NotImplementedError
 
     def remove_deck_card(self, from_top=True):
         """
@@ -58,3 +64,4 @@ class Player(object):
         出牌
         :return: Card
         """
+        raise NotImplementedError
