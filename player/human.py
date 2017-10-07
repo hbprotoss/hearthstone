@@ -3,6 +3,7 @@
 
 from constant.action import Action
 from player import Player
+from util import graphic_util
 
 
 class HumanPlayer(Player):
@@ -16,6 +17,9 @@ class HumanPlayer(Player):
         print("3. Pass Turn")
         action = input("Your choice [1/2/3] ")
         return Action(int(action))
+
+    def act_attack(self):
+        graphic_util.print_table(self.engine.cur_player(), self.engine.opponent_player())
 
     def play_card(self):
         return None

@@ -14,7 +14,15 @@ class Player(object):
         self.table_cards = []  # 桌面上的牌
         self.dead_cards = []  # 坟场
 
+        self.engine = None
+
     def choose_action(self):
+        raise NotImplementedError
+
+    def act_attack(self):
+        raise NotImplementedError
+
+    def act_play_card(self):
         raise NotImplementedError
 
     def draw_card_from_deck(self, from_top=True):
