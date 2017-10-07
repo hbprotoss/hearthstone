@@ -13,6 +13,8 @@ _engine = None
 class Engine(object):
     @staticmethod
     def get_instance():
+        if _engine is None:
+            return Engine()
         return _engine
 
     def __init__(self):
@@ -29,9 +31,12 @@ class Engine(object):
         self._init_players()
         while True:
             cur_player = self.players[self.cur_play_idx]
-            print("%s's turn" % cur_player.name)
+            print("%s's turn" % cur_player.hero.name)
             action = cur_player.choose_action()
-            print("%s choose %s" % (cur_player.name, action))
+            print("%s choose %s" % (cur_player.hero.name, action.name))
+
+            self.finish_turn()
+            print()
 
     def _init_players(self):
         # 先手
@@ -53,3 +58,6 @@ class Engine(object):
 
     def opponent_player(self):
         return self.players[self.player_count - self.cur_play_idx - 1]
+
+    def finish_turn(self):
+        self.cur_play_idx = self.player_count - self.cur_play_idx - 1

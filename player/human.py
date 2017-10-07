@@ -14,7 +14,7 @@ class HumanPlayer(Player):
         print("1. Attack")
         print("2. Play Card")
         print("3. Pass Turn")
-        action = input("Your choice [1/2/3]")
+        action = input("Your choice [1/2/3] ")
         return Action(int(action))
 
     def play_card(self):
