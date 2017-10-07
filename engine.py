@@ -50,6 +50,7 @@ class Engine(object):
     def _init_players(self):
         # 先手
         player0 = HumanPlayer(Jaina(), self._generate_jaina_cards())
+        player0.hand_cards = [Test()] * 2  # todo for debug
         player0.engine = self
         self.players.append(player0)
         # 后手

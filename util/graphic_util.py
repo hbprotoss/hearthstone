@@ -21,3 +21,18 @@ def print_table(cur_player, opponent_player):
     ) + blank_width
     print("%s|%s" % (cur_player.hero.name.ljust(width), opponent_player.hero.name.ljust(width)))
     print("-" * (width * 2 + 1))
+
+
+def print_hand_cards(player):
+    """
+    :param player:
+    :return:
+    """
+    print("-" * 20)
+    hand_cards = player.hand_cards
+    for index, card in enumerate(hand_cards):
+        print("{index}. {name} [{cost}/{attack}/{health}]".format(name=card.name, cost=card.cur_cost,
+                                                                  attack=card.cur_attack,
+                                                                  health=card.cur_health, index=index)
+              )
+    print("-" * 20)

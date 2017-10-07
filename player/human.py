@@ -21,6 +21,10 @@ class HumanPlayer(Player):
     def act_attack(self):
         graphic_util.print_table(self.engine.cur_player(), self.engine.opponent_player())
 
+    def act_play_card(self):
+        print("Hand Cards")
+        graphic_util.print_hand_cards(self)
+
     def play_card(self):
         return None
 
