@@ -33,9 +33,12 @@ class Engine(object):
         while True:
             cur_player = self.cur_player()
             print("%s's turn" % cur_player.hero.name)
-            action = cur_player.choose_action()
-            print("%s choose %s" % (cur_player.hero.name, action.name))
-            self._dispatch_action(action)
+            while True:
+                action = cur_player.choose_action()
+                print("%s choose %s" % (cur_player.hero.name, action.name))
+                self._dispatch_action(action)
+                if action == Action.PassTurn:
+                    break
 
             self.finish_turn()
             print()
