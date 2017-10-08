@@ -67,6 +67,18 @@ class Player(object):
             return None
         return self.deck_cards.pop(0)
 
+    def add_table_card(self, card, index):
+        """
+        增加桌面上的牌
+        :param card:
+        :param index:
+        :return:
+        """
+        if index == -1 or index == len(self.table_cards):
+            self.table_cards.append(card)
+        else:
+            self.table_cards.insert(index, card)
+
     def play_card(self):
         """
         出牌

@@ -19,7 +19,7 @@ def print_table(cur_player, opponent_player):
         len(cur_player.hero.name),
         len(opponent_player.hero.name)
     ) + blank_width
-    print("%s|%s" % (cur_player.hero.name.ljust(width), opponent_player.hero.name.ljust(width)))
+    print("*%s|%s" % (cur_player.hero.name.ljust(width), opponent_player.hero.name.ljust(width)))
     print("-" * (width * 2 + 1))
 
 
