@@ -19,7 +19,10 @@ class Player(object):
     def choose_action(self):
         raise NotImplementedError
 
-    def act_attack(self):
+    def act_attack_with_minion(self):
+        raise NotImplementedError
+
+    def act_use_hero_power(self):
         raise NotImplementedError
 
     def act_play_card(self):

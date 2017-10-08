@@ -6,44 +6,20 @@ from player import Player
 from util import graphic_util
 
 
-def print_cards(on_begin=True, on_end=True):
-    def decorator(func):
-        def wrapper(self):
-            if on_begin:
-                print("Table Cards")
-                graphic_util.print_table(self, self.engine.opponent_player())
-                print("Hand Cards")
-                graphic_util.print_hand_cards(self)
-
-            ret = func(self)
-
-            if on_end:
-                print("Table Cards Now!")
-                graphic_util.print_table(self, self.engine.opponent_player())
-                print("Hand Cards Now!")
-                graphic_util.print_hand_cards(self)
-
-            return ret
-
-        return wrapper
-
-    return decorator
-
-
 class HumanPlayer(Player):
     def __init__(self, hero, deck_cards):
         Player.__init__(self, hero, deck_cards)
 
     def choose_action(self):
         print("Choose Action:")
-        print("1. Attack")
-        print("2. Play Card")
-        print("3. Pass Turn")
-        action = input("Your choice [1/2/3] ")
+        print("1. Use Hero Power")
+        print("2. Attack with Minion")
+        print("3. Play Card")
+        print("4. Pass Turn")
+        action = input("Your choice [1/2/3/4] ")
         return Action(int(action))
 
-    @print_cards(on_end=False)
-    def act_attack(self):
+    def act_attack_with_minion(self):
         my_cards, opponent_cards = self.engine.table_cards()
         while True:
             minion_idx = input("Choose your minion to attack: ")
@@ -66,7 +42,9 @@ class HumanPlayer(Player):
         minion.cur_health -= target.cur_attack
         target.cur_health -= minion.cur_attack
 
-    @print_cards()
+    def act_use_hero_power(self):
+        pass
+
     def act_play_card(self):
         while True:
             card_idx = input("Choose your hand card to play: ")
@@ -90,4 +68,3 @@ class HumanPlayer(Player):
 
     def add_deck_card(self, card):
         pass
-

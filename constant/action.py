@@ -5,6 +5,7 @@ from enum import Enum
 
 
 class Action(Enum):
-    Attack = 1
-    PlayCard = 2
-    PassTurn = 3
+    UseHeroPower = 1
+    AttackWithMinion = 2
+    PlayCard = 3
+    PassTurn = 4

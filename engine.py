@@ -36,25 +36,31 @@ class Engine(object):
             cur_player = self.cur_player()
             print("%s's turn" % cur_player.hero.name)
             while True:
+                print("Table Cards")
+                graphic_util.print_table(cur_player, self.opponent_player())
+                print("Hand Cards")
+                graphic_util.print_hand_cards(cur_player)
+
                 action = cur_player.choose_action()
                 print("%s choose %s" % (cur_player.hero.name, action.name))
                 self._dispatch_action(action)
                 if action == Action.PassTurn:
                     break
 
+                print("Table Cards Now!")
+                graphic_util.print_table(cur_player, self.opponent_player())
+                print("Hand Cards Now!")
+                graphic_util.print_hand_cards(cur_player)
+
             self.finish_turn()
             print()
 
     def _dispatch_action(self, action):
         cur_player = self.cur_player()
-        if action == Action.Attack:
-            cur_player.act_attack()
+        if action == Action.AttackWithMinion:
+            cur_player.act_attack_with_minion()
             self._clean_dead_minion_on_table(cur_player)
             self._clean_dead_minion_on_table(self.opponent_player())
-            print("Table Cards Now!")
-            graphic_util.print_table(cur_player, self.opponent_player())
-            print("Hand Cards Now!")
-            graphic_util.print_hand_cards(cur_player)
         elif action == Action.PlayCard:
             cur_player.act_play_card()
 
