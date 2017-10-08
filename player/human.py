@@ -6,6 +6,30 @@ from player import Player
 from util import graphic_util
 
 
+def print_cards(on_begin=True, on_end=True):
+    def decorator(func):
+        def wrapper(self):
+            if on_begin:
+                print("Table Cards")
+                graphic_util.print_table(self, self.engine.opponent_player())
+                print("Hand Cards")
+                graphic_util.print_hand_cards(self)
+
+            ret = func(self)
+
+            if on_end:
+                print("Table Cards Now!")
+                graphic_util.print_table(self, self.engine.opponent_player())
+                print("Hand Cards Now!")
+                graphic_util.print_hand_cards(self)
+
+            return ret
+
+        return wrapper
+
+    return decorator
+
+
 class HumanPlayer(Player):
     def __init__(self, hero, deck_cards):
         Player.__init__(self, hero, deck_cards)
@@ -18,14 +42,32 @@ class HumanPlayer(Player):
         action = input("Your choice [1/2/3] ")
         return Action(int(action))
 
+    @print_cards(on_end=False)
     def act_attack(self):
-        graphic_util.print_table(self, self.engine.opponent_player())
+        my_cards, opponent_cards = self.engine.table_cards()
+        while True:
+            minion_idx = input("Choose your minion to attack: ")
+            if not (minion_idx.isdigit() or int(minion_idx) < 0 or int(minion_idx) >= len(my_cards)):
+                print("Please choose correct minion")
+                continue
+            minion = my_cards[int(minion_idx)]
+            print("You have chosen minion %s" % graphic_util.format_card(minion))
+            break
 
+        while True:
+            target_idx = input("Choose your target: ")
+            if not (target_idx.isdigit() or int(target_idx) < 0 or int(target_idx) >= len(opponent_cards)):
+                print("Please choose correct minion")
+                continue
+            target = opponent_cards[int(target_idx)]
+            print("You have chosen target %s" % graphic_util.format_card(target))
+            break
+
+        minion.cur_health -= target.cur_attack
+        target.cur_health -= minion.cur_attack
+
+    @print_cards()
     def act_play_card(self):
-        print("Table Cards")
-        graphic_util.print_table(self, self.engine.opponent_player())
-        print("Hand Cards")
-        graphic_util.print_hand_cards(self)
         while True:
             card_idx = input("Choose your hand card to play: ")
             if not (card_idx.isdigit() or int(card_idx) < 0 or int(card_idx) >= len(self.hand_cards)):
@@ -43,13 +85,9 @@ class HumanPlayer(Player):
             self.add_table_card(card_to_play, int(place_idx))
             break
 
-        print("Table Cards Now!")
-        graphic_util.print_table(self, self.engine.opponent_player())
-        print("Hand Cards Now!")
-        graphic_util.print_hand_cards(self)
-
     def play_card(self):
         return None
 
     def add_deck_card(self, card):
         pass
+

@@ -79,6 +79,9 @@ class Player(object):
         else:
             self.table_cards.insert(index, card)
 
+    def remove_table_card(self, card):
+        self.table_cards.remove(card)
+
     def play_card(self):
         """
         出牌
