@@ -2,6 +2,12 @@
 # coding=utf-8
 
 
+# 牌桌上玩家分割线
+PLAYER_SEPARATE_LINE = '-' * 20
+# 牌桌和手牌分割线
+TABLE_SEPARATE_LINE = '*' * 20
+
+
 def print_table(cur_player, opponent_player):
     """
     :param cur_player:
@@ -28,8 +34,10 @@ def print_table(cur_player, opponent_player):
         len(cur_player.hero.name),
         len(opponent_player.hero.name)
     ) + blank_width
+    print('*' * width)
     print_player_table(cur_player)
     print_player_table(opponent_player)
+    print('*' * width)
 
 
 def print_hand_cards(player):
@@ -37,11 +45,11 @@ def print_hand_cards(player):
     :param player:
     :return:
     """
-    print("-" * 20)
+    print(PLAYER_SEPARATE_LINE)
     hand_cards = player.hand_cards
     for index, card in enumerate(hand_cards):
         print("{index}. {minion}".format(index=index, minion=format_card(card)))
-    print("-" * 20)
+    print(PLAYER_SEPARATE_LINE)
 
 
 def format_card(card):
