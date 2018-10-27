@@ -61,10 +61,13 @@ class Engine(object):
         cur_player = self.cur_player()
         if action == Action.AttackWithMinion:
             cur_player.act_attack_with_minion()
-            self._clean_dead_minion_on_table(cur_player)
-            self._clean_dead_minion_on_table(self.opponent_player())
+        elif action == Action.UseHeroPower:
+            cur_player.act_use_hero_power()
         elif action == Action.PlayCard:
             cur_player.act_play_card()
+
+        self._clean_dead_minion_on_table(cur_player)
+        self._clean_dead_minion_on_table(self.opponent_player())
 
     def _clean_dead_minion_on_table(self, player: Player):
         to_remove = []
@@ -95,10 +98,10 @@ class Engine(object):
     def _generate_garrosh_cards(self):
         return [Test()] * 4
 
-    def cur_player(self):
+    def cur_player(self) -> Player:
         return self.players[self.cur_play_idx]
 
-    def opponent_player(self):
+    def opponent_player(self) -> Player:
         return self.players[self.player_count - self.cur_play_idx - 1]
 
     def finish_turn(self):

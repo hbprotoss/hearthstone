@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # coding=utf-8
 
-from card.firebalt import Firebalt
+from card.hero_power.firebalt import Firebalt
 from hero import Hero
 
 

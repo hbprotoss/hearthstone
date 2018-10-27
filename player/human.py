@@ -43,7 +43,17 @@ class HumanPlayer(Player):
         target.cur_health -= minion.cur_attack
 
     def act_use_hero_power(self):
-        pass
+        my_cards, opponent_cards = self.engine.table_cards()
+        cur_player = self.engine.cur_player()
+        while True:
+            target_idx = input("Choose your target: ")
+            if not (target_idx.isdigit() or int(target_idx) < 0 or int(target_idx) >= len(opponent_cards)):
+                print("Please choose correct minion")
+                continue
+            target = opponent_cards[int(target_idx)]
+            print("You have chosen target %s" % graphic_util.format_card(target))
+            break
+        cur_player.hero.power.post_play(self.engine, [target])
 
     def act_play_card(self):
         while True:

@@ -10,7 +10,9 @@ class Hero(object):
         self.heath = 0
         self.armor = 0
 
-        self.immune = False  # 无敌状态
-
         self.weapon = None  # 武器
         self.power = None  # 英雄技能
+
+        self.is_immune = False  # 无敌状态
+        self.is_weapon_attacked = False  # 是否使用过武器
+        self.is_power_attacked = False  # 是否使用过英雄技能
