@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 # coding=utf-8
 
+from card import Card
+from hero import Hero
+from player import Player
 
 # 牌桌上玩家分割线
 PLAYER_SEPARATE_LINE = '-' * 20
@@ -16,10 +19,7 @@ def print_table(cur_player, opponent_player):
     """
 
     def print_player_table(player):
-        name = player.hero.name
-        if player == cur_player:
-            name += "(You)"
-        print(name.ljust(width))
+        print(format_hero(player.hero, player == cur_player))
         print("-" * width)
         for i in range(len(player.table_cards)):
             print("{index}. {minion}".format(index=i, minion=format_card(player.table_cards[i])))
@@ -40,7 +40,18 @@ def print_table(cur_player, opponent_player):
     print('*' * width)
 
 
-def print_hand_cards(player):
+def format_hero(hero: Hero, is_cur_player: bool):
+    name = hero.name
+    if is_cur_player:
+        name += '(You)'
+    if hero.armor == 0:
+        name += ' [{health}💧]'.format(health=hero.health)
+    else:
+        name += ' [{health}💧/{armor}🛡️]'.format(health=hero.health, armor=hero.armor)
+    return name
+
+
+def print_hand_cards(player: Player):
     """
     :param player:
     :return:
@@ -52,7 +63,7 @@ def print_hand_cards(player):
     print(PLAYER_SEPARATE_LINE)
 
 
-def format_card(card):
+def format_card(card: Card):
     return "{name} [{cost}/{attack}/{health}]".format(name=card.name, cost=card.cur_cost,
                                                       attack=card.cur_attack,
                                                       health=card.cur_health)

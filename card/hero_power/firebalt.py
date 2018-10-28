@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # coding=utf-8
 
-from card import Power
+from card.hero_power import Power
 
 
 class Firebalt(Power):

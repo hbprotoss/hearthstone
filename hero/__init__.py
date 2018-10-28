@@ -7,7 +7,7 @@ class Hero(object):
         self.name = ''
 
         self.attack = 0
-        self.heath = 0
+        self.health = 30
         self.armor = 0
 
         self.weapon = None  # 武器

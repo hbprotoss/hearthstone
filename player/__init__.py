@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 # coding=utf-8
 
+from hero import Hero
+
 
 class Player(object):
-    def __init__(self, hero, deck_cards):
+    def __init__(self, hero: Hero, deck_cards):
         self.hero = hero
         self.mana = 1
         self.cur_mana = 1
@@ -84,4 +86,3 @@ class Player(object):
 
     def remove_table_card(self, card):
         self.table_cards.remove(card)
-

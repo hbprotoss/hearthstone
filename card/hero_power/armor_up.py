@@ -1,13 +1,16 @@
 #!/usr/bin/env python3
 # coding=utf-8
 
-from card import Power
+from card.hero_power import Power
 
 
 class ArmorUp(Power):
     def __init__(self):
         Power.__init__(self)
         self.name = 'Armor Up'
+
+    def has_target(self):
+        return False
 
     def post_play(self, engine, target_cards):
         player = engine.cur_player()
