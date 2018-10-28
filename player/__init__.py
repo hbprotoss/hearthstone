@@ -85,9 +85,3 @@ class Player(object):
     def remove_table_card(self, card):
         self.table_cards.remove(card)
 
-    def play_card(self):
-        """
-        出牌
-        :return: Card
-        """
-        raise NotImplementedError

@@ -73,8 +73,5 @@ class HumanPlayer(Player):
             self.add_table_card(card_to_play, int(place_idx))
             break
 
-    def play_card(self):
-        return None
-
     def add_deck_card(self, card):
         pass
