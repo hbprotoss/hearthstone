@@ -48,7 +48,7 @@ def format_player(player: Player, is_cur_player: bool):
         armor = ''
     else:
         armor = '{armor}🛡️'.format(armor=hero.armor)
-    name += ' [{health}💧{sep}{armor} {{{mana}}}]'.format(
+    name += ' [{health}💧️{sep}{armor} {{{mana}}}]'.format(
         health=hero.health,
         sep='/' if armor else '',
         armor=armor,
@@ -79,6 +79,9 @@ def print_hand_cards(player: Player):
 
 
 def format_card(card: Card):
-    return "{name} [{cost}/{attack}/{health}]".format(name=card.name, cost=card.cur_cost,
-                                                      attack=card.cur_attack,
-                                                      health=card.cur_health)
+    return "{name} [{cost}⬢/{attack}🗡️/{health}💧️]".format(
+        name=card.name,
+        cost=card.cur_cost,
+        attack=card.cur_attack,
+        health=card.cur_health
+    )
