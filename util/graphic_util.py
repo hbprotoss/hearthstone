@@ -2,7 +2,6 @@
 # coding=utf-8
 
 from card import Card
-from hero import Hero
 from player import Player
 
 # 牌桌上玩家分割线
@@ -19,7 +18,7 @@ def print_table(cur_player, opponent_player):
     """
 
     def print_player_table(player):
-        print(format_hero(player.hero, player == cur_player))
+        print(format_player(player, player == cur_player))
         print("-" * width)
         for i in range(len(player.table_cards)):
             print("{index}. {minion}".format(index=i, minion=format_card(player.table_cards[i])))
@@ -40,15 +39,31 @@ def print_table(cur_player, opponent_player):
     print('*' * width)
 
 
-def format_hero(hero: Hero, is_cur_player: bool):
+def format_player(player: Player, is_cur_player: bool):
+    hero = player.hero
     name = hero.name
     if is_cur_player:
         name += '(你)'
     if hero.armor == 0:
-        name += ' [{health}💧]'.format(health=hero.health)
+        armor = ''
     else:
-        name += ' [{health}💧/{armor}🛡️]'.format(health=hero.health, armor=hero.armor)
+        armor = '{armor}🛡️'.format(armor=hero.armor)
+    name += ' [{health}💧{sep}{armor} {{{mana}}}]'.format(
+        health=hero.health,
+        sep='/' if armor else '',
+        armor=armor,
+        mana=format_mana(player)
+    )
     return name
+
+
+def format_mana(player: Player):
+    return '{available_mana}{used_mana} ({available}/{total})'.format(
+        available_mana='⬢' * player.cur_mana,
+        used_mana='⬡' * (player.mana - player.cur_mana),
+        available=player.cur_mana,
+        total=player.mana
+    )
 
 
 def print_hand_cards(player: Player):

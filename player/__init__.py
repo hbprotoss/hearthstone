@@ -30,6 +30,14 @@ class Player(object):
     def act_play_card(self):
         raise NotImplementedError
 
+    def add_mana(self, count=1):
+        self.mana += count
+        self.cur_mana += count
+
+    def add_and_restore_mana(self, count=1):
+        self.add_mana(count)
+        self.cur_mana = self.mana
+
     def draw_card_from_deck(self, from_top=True):
         """
         抓牌

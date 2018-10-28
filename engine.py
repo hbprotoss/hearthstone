@@ -105,6 +105,10 @@ class Engine(object):
         return self.players[self.player_count - self.cur_play_idx - 1]
 
     def finish_turn(self):
+        if self.cur_play_idx == 1:
+            self.cur_player().add_and_restore_mana()
+            self.opponent_player().add_and_restore_mana()
+        # 交换控制权
         self.cur_play_idx = self.player_count - self.cur_play_idx - 1
 
     def table_cards(self):
