@@ -84,6 +84,7 @@ class Engine(object):
         player0.hand_cards = [StonetuskBoar()] * 2  # todo for debug
         player0.table_cards = [StonetuskBoar(), GoldshireFootman()]  # todo for debug
         player0.engine = self
+        # player0.cur_mana = player0.mana = 2
         self.players.append(player0)
         # 后手
         player1 = HumanPlayer(Garrosh(), self._generate_garrosh_cards())
@@ -108,6 +109,8 @@ class Engine(object):
         if self.cur_play_idx == 1:
             self.cur_player().add_and_restore_mana()
             self.opponent_player().add_and_restore_mana()
+        else:
+            self.cur_player().add_and_restore_mana(0)
         # 交换控制权
         self.cur_play_idx = self.player_count - self.cur_play_idx - 1
 

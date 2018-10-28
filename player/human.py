@@ -70,7 +70,11 @@ class HumanPlayer(Player):
                 print("请选择正确的牌")
                 continue
             card_to_play = self.hand_cards[int(card_idx)]
+            if self.cur_mana < card_to_play.cur_cost:
+                print('法力水晶不足')
+                return
             self.remove_hand_card(card_to_play)
+            self.cur_mana -= card_to_play.cur_cost
             break
 
         while True:
