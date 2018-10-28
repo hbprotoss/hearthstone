@@ -7,7 +7,7 @@ from card.hero_power import Power
 class ArmorUp(Power):
     def __init__(self):
         Power.__init__(self)
-        self.name = 'Armor Up'
+        self.name = '全副武装'
 
     def has_target(self):
         return False

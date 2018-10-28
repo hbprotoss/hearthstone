@@ -7,7 +7,7 @@ from card import Spell
 class Coin(Spell):
     def __init__(self):
         Spell.__init__(self)
-        self.name = 'Coin'
+        self.name = '硬币'
 
     def post_play(self, engine, target_cards):
         player = engine.cur_player()

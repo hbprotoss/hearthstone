@@ -8,5 +8,5 @@ from hero import Hero
 class Jaina(Hero):
     def __init__(self):
         Hero.__init__(self)
-        self.name = 'Jaina'
+        self.name = '吉安娜'
         self.power = Firebalt()

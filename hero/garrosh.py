@@ -8,5 +8,5 @@ from hero import Hero
 class Garrosh(Hero):
     def __init__(self):
         Hero.__init__(self)
-        self.name = 'Garrosh'
+        self.name = '加尔鲁什'
         self.power = ArmorUp()

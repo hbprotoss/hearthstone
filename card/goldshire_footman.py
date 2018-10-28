@@ -4,10 +4,10 @@
 from card import Minion
 
 
-class Test2(Minion):
+class GoldshireFootman(Minion):
     def __init__(self):
         Minion.__init__(self)
-        self.name = 'Test Minion(Type 2)'
+        self.name = '闪金镇步兵'
         self.cost = self.cur_cost = 1
-        self.attack = self.cur_attack = 2
-        self.health = self.cur_health = 1
+        self.attack = self.cur_attack = 1
+        self.health = self.cur_health = 2

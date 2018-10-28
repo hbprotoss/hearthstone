@@ -43,7 +43,7 @@ def print_table(cur_player, opponent_player):
 def format_hero(hero: Hero, is_cur_player: bool):
     name = hero.name
     if is_cur_player:
-        name += '(You)'
+        name += '(你)'
     if hero.armor == 0:
         name += ' [{health}💧]'.format(health=hero.health)
     else:

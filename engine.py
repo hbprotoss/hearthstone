@@ -2,8 +2,8 @@
 # coding=utf-8
 
 from card.coin import Coin
-from card.test import Test
-from card.test2 import Test2
+from card.goldshire_footman import GoldshireFootman
+from card.stonetusk_boar import StonetuskBoar
 from constant.action import Action
 from hero.garrosh import Garrosh
 from hero.jaina import Jaina
@@ -34,17 +34,17 @@ class Engine(object):
         self._init_players()
         while True:
             cur_player = self.cur_player()
-            print(">>>%s's turn<<<" % cur_player.hero.name)
+            print(">>>[%s] 回合<<<" % cur_player.hero.name)
             print()
             while True:
-                print("Table Cards")
+                print("牌桌")
                 graphic_util.print_table(cur_player, self.opponent_player())
                 print()
-                print("Hand Cards")
+                print("手牌")
                 graphic_util.print_hand_cards(cur_player)
 
                 action = cur_player.choose_action()
-                print("%s choose %s" % (cur_player.hero.name, action.name))
+                print("%s 选择 %s" % (cur_player.hero.name, action.name))
                 self._dispatch_action(action)
                 if action == Action.PassTurn:
                     break
@@ -73,7 +73,7 @@ class Engine(object):
         to_remove = []
         for card in player.table_cards:
             if card.cur_health <= 0:
-                print("Dead: %s" % graphic_util.format_card(card))
+                print("死亡随从: %s" % graphic_util.format_card(card))
                 to_remove.append(card)
         for card in to_remove:
             player.remove_table_card(card)
@@ -81,22 +81,22 @@ class Engine(object):
     def _init_players(self):
         # 先手
         player0 = HumanPlayer(Jaina(), self._generate_jaina_cards())
-        player0.hand_cards = [Test()] * 2  # todo for debug
-        player0.table_cards = [Test(), Test2()]  # todo for debug
+        player0.hand_cards = [StonetuskBoar()] * 2  # todo for debug
+        player0.table_cards = [StonetuskBoar(), GoldshireFootman()]  # todo for debug
         player0.engine = self
         self.players.append(player0)
         # 后手
         player1 = HumanPlayer(Garrosh(), self._generate_garrosh_cards())
-        player1.table_cards = [Test2()]  # todo for debug
+        player1.table_cards = [GoldshireFootman()]  # todo for debug
         player1.engine = self
         player1.add_hand_card(Coin())
         self.players.append(player1)
 
     def _generate_jaina_cards(self):
-        return [Test()] * 4
+        return [StonetuskBoar()] * 4
 
     def _generate_garrosh_cards(self):
-        return [Test()] * 4
+        return [StonetuskBoar()] * 4
 
     def cur_player(self) -> Player:
         return self.players[self.cur_play_idx]

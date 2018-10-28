@@ -7,7 +7,7 @@ from card.hero_power import Power
 class Firebalt(Power):
     def __init__(self):
         Power.__init__(self)
-        self.name = 'Firebalt'
+        self.name = '火焰冲击'
         self.attack = self.cur_attack = 1
         self.target_count = 1
 
