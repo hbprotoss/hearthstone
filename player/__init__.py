@@ -94,3 +94,4 @@ class Player(object):
 
     def remove_table_card(self, card):
         self.table_cards.remove(card)
+        self.dead_cards.append(card)
